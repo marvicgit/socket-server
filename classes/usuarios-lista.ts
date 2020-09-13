@@ -26,7 +26,7 @@ export class UsuariosLista {
     }
 
     getLista() {
-        return this.lista;
+        return this.lista.filter(usuario => usuario.nombre !== 'sin-nombre');
     }
 
     getUsuario(id: string) {
