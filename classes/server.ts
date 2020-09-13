@@ -4,6 +4,7 @@ import socketIO from "socket.io";
 import http from "http";
 import * as socket from '../sockets/socket';
 
+
 export default class Server {
 
     static _instance: Server;
@@ -25,13 +26,18 @@ export default class Server {
     }
 
     private escucharSockets() {
-        console.log('escuchando conexciones - sockets');
+        //console.log('escuchando conexciones - sockets');
         this.io.on('connection', cliente => {
-            console.log('cliente conectado');
+            
+            socket.conectarCliente(cliente);
+
+            socket.configurarUsuario(cliente, this.io);
 
             socket.mensaje(cliente, this.io);
             //desconectar
             socket.desconectar(cliente);
+
+            
         });
 
     
